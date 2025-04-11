@@ -1,26 +1,240 @@
+
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>brew-ratio-wizard</title>
-    <meta name="description" content="Lovable Generated Project" />
-    <meta name="author" content="Lovable" />
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brew Ratio Wizard</title>
+  <meta name="description" content="Calculate the perfect water-to-coffee ratio for your next brew">
+  <style>
+    :root {
+      --coffee-cream: #f8f4e9;
+      --coffee-light: #e6d7c3;
+      --coffee: #8b5a2b;
+      --coffee-dark: #5e341a;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom right, var(--coffee-cream), var(--coffee-light));
+      min-height: 100vh;
+    }
+    
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    
+    .icon-container {
+      background-color: var(--coffee-dark);
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+    }
+    
+    .icon-container svg {
+      width: 32px;
+      height: 32px;
+      color: var(--coffee-cream);
+    }
+    
+    h1 {
+      font-size: 2rem;
+      color: var(--coffee-dark);
+      margin-bottom: 8px;
+    }
+    
+    p {
+      color: var(--coffee);
+      margin-top: 0;
+    }
+    
+    .card {
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    label {
+      display: block;
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 8px;
+      color: var(--coffee-dark);
+    }
+    
+    input[type="number"] {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--coffee-light);
+      border-radius: 6px;
+      background-color: var(--coffee-cream);
+      color: var(--coffee-dark);
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+    
+    select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--coffee-light);
+      border-radius: 6px;
+      background-color: var(--coffee-cream);
+      color: var(--coffee-dark);
+      font-size: 16px;
+      appearance: none;
+      box-sizing: border-box;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%235e341a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+    }
+    
+    .result-card {
+      text-align: center;
+      margin-top: 30px;
+    }
+    
+    .result-value {
+      font-size: 48px;
+      font-weight: bold;
+      color: var(--coffee-dark);
+      margin: 20px 0 10px;
+    }
+    
+    .result-unit {
+      font-size: 20px;
+      color: var(--coffee);
+    }
+    
+    .result-explanation {
+      color: var(--coffee);
+      margin-top: 16px;
+      font-size: 14px;
+    }
+    
+    footer {
+      text-align: center;
+      margin-top: 60px;
+      color: rgba(94, 52, 26, 0.5);
+      font-size: 12px;
+    }
 
-    <meta property="og:title" content="brew-ratio-wizard" />
-    <meta property="og:description" content="Lovable Generated Project" />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    .help-text {
+      text-align: center;
+      color: rgba(94, 52, 26, 0.7);
+      font-size: 14px;
+      line-height: 1.5;
+      margin-top: 48px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="icon-container">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 8h1a4 4 0 1 1 0 8h-1"></path>
+          <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"></path>
+          <line x1="6" y1="2" x2="6" y2="4"></line>
+          <line x1="10" y1="2" x2="10" y2="4"></line>
+          <line x1="14" y1="2" x2="14" y2="4"></line>
+        </svg>
+      </div>
+      <h1>Brew Ratio Wizard</h1>
+      <p>Calculate the perfect water-to-coffee ratio for your next brew</p>
+    </header>
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@lovable_dev" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-  </head>
+    <main>
+      <div class="card">
+        <div class="form-group">
+          <label for="coffee-amount">Coffee Amount (g)</label>
+          <input type="number" id="coffee-amount" value="20" min="1" step="0.5">
+        </div>
 
-  <body>
-    <div id="root"></div>
-    <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
-    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+        <div class="form-group">
+          <label for="brew-ratio">Brew Ratio</label>
+          <select id="brew-ratio">
+            <option value="12">1:12 (Stronger)</option>
+            <option value="14">1:14</option>
+            <option value="15" selected>1:15 (Standard)</option>
+            <option value="16">1:16</option>
+            <option value="17">1:17</option>
+            <option value="18">1:18 (Lighter)</option>
+          </select>
+        </div>
+
+        <div class="result-card">
+          <h3>Water Needed</h3>
+          <div id="water-result" class="result-value">300</div>
+          <div class="result-unit">ml</div>
+          <p class="result-explanation">
+            For <span id="coffee-display">20</span>g of coffee with a 1:<span id="ratio-display">15</span> ratio
+          </p>
+        </div>
+      </div>
+
+      <div class="help-text">
+        <p>Enter your coffee amount in grams, select your preferred brew ratio,</p>
+        <p>and let the Brew Ratio Wizard calculate the perfect water amount for you.</p>
+      </div>
+    </main>
+
+    <footer>
+      <p>Made with ♥ for coffee lovers</p>
+    </footer>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const coffeeAmountInput = document.getElementById('coffee-amount');
+      const brewRatioSelect = document.getElementById('brew-ratio');
+      const waterResultElement = document.getElementById('water-result');
+      const coffeeDisplayElement = document.getElementById('coffee-display');
+      const ratioDisplayElement = document.getElementById('ratio-display');
+      
+      // Calculate water function
+      function calculateWater(coffeeAmount, ratio) {
+        return coffeeAmount * ratio;
+      }
+      
+      // Update the result display
+      function updateResult() {
+        const coffeeAmount = parseFloat(coffeeAmountInput.value) || 0;
+        const ratio = parseInt(brewRatioSelect.value) || 15;
+        
+        const waterAmount = calculateWater(coffeeAmount, ratio);
+        
+        // Update the display
+        waterResultElement.textContent = waterAmount.toFixed(0);
+        coffeeDisplayElement.textContent = coffeeAmount.toFixed(1);
+        ratioDisplayElement.textContent = ratio;
+      }
+      
+      // Add event listeners
+      coffeeAmountInput.addEventListener('input', updateResult);
+      brewRatioSelect.addEventListener('change', updateResult);
+      
+      // Initialize with default values
+      updateResult();
+    });
+  </script>
+</body>
 </html>
