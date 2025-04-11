@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -24,6 +25,13 @@ export default {
 				ring: 'hsl(var(--ring))',
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
+				coffee: {
+					light: '#E6D7C3',
+					DEFAULT: '#6F4E37',
+					dark: '#3A2514',
+					cream: '#FFF8E7',
+					accent: '#D4A76A'
+				},
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
 					foreground: 'hsl(var(--primary-foreground))'
@@ -84,11 +92,25 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'steam': {
+					'0%': { 
+						opacity: '0',
+						transform: 'translateY(0) scale(1)'
+					},
+					'50%': { 
+						opacity: '0.8'
+					},
+					'100%': { 
+						opacity: '0', 
+						transform: 'translateY(-15px) scale(1.5)'
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'steam': 'steam 2s ease-out infinite'
 			}
 		}
 	},
